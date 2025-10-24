@@ -1364,7 +1364,7 @@
 
   "Agent hides or doesn’t explain/provide the client all Trading Instruments": {
     keywords: [
-      "Zero point"
+      "Zero point","0.1","0.01","0.2"
     ]
   },
 
@@ -1757,7 +1757,8 @@
             resultsContainer.style.display = 'none';
             
             // Case-insensitive regex search
-            const riskyRegex = new RegExp(riskyPhrases.join("|"), "gi");
+            //const riskyRegex = new RegExp(riskyPhrases.join("|"), "gi"); previous regex
+            const riskyRegex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
             const matches = [...transcript.matchAll(riskyRegex)];
             
             // Find timestamps if they exist
@@ -2035,7 +2036,8 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
     
     // If we have risks, process them
     if (riskItems && riskItems.length > 0) {
-        const regex = new RegExp(riskyPhrases.join("|"), "gi");
+        //const regex = new RegExp(riskyPhrases.join("|"), "gi"); previous regex
+        const regex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
         let lastIndex = 0;
         const matches = [...text.matchAll(regex)];
         
@@ -2544,6 +2546,7 @@ function toggleInputContainer() {
 </body>
 
 </html>
+
 
 
 
