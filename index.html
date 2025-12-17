@@ -730,7 +730,7 @@
 .risk-category[data-category="Missing Knowledge of the Market"] { background-color: #154360; }
 .risk-category[data-category="False Market Information"] { background-color: #27AE60; }
 .risk-category[data-category="No Reference to Source"] { background-color: #2C3E50; }
-.risk-category[data-category="Agent hides or doesn’t explain/provide the client all Trading Instruments"] { background-color: #935116; }
+.risk-category[data-category="Agent hides or doesn't explain/provide the client all Trading Instruments"] { background-color: #935116; }
 .risk-category[data-category="Lack of Basic Trading Knowledge"] { background-color: #2980B9; }
 .risk-category[data-category="Failing to Explain Margin/Margin call"] { background-color: #34495E; }
 
@@ -1085,10 +1085,10 @@
   font-weight: 500;
   transition: all 0.2s;
   font-size: 14px;
-  border: none;
-  gap: 6px;
-  background-color: #00ADB5;
-  color: white;
+    border: none;
+    gap: 6px;
+    background-color: #00ADB5;
+    color: white;
 }
 
 .professional-popup .acknowledge-btn:hover {
@@ -1149,10 +1149,350 @@
     padding: 18px;
   }
 }
+/* Add these styles to your existing CSS: */
+/* Money Detector - Compact Square Version */
+.money-detector-compact {
+    margin-top: 15px;
+    border: 1px solid rgba(0, 173, 181, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-  
+.money-detector-header-compact {
+    background: linear-gradient(135deg, var(--primary) 0%, #008a91 100%);
+    color: white;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
 
+.money-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.money-header-left i {
+    font-size: 18px;
+}
+
+.money-count {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.money-detector-header-compact .toggle-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+}
+
+.money-detector-header-compact.collapsed .toggle-icon {
+    transform: rotate(-90deg);
+}
+
+.money-detector-content-compact {
+    padding: 12px;
+    max-height: 250px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+}
+
+.money-detector-content-compact.collapsed {
+    max-height: 0;
+    padding: 0 12px;
+}
+
+.money-controls-compact {
+    margin-bottom: 12px;
+}
+
+.scan-money-btn {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+    background-color: var(--dark-gray) !important;
+}
+
+.scan-money-btn:hover {
+    background-color: var(--primary) !important;
+}
+
+.money-stats-compact {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.money-stat-compact {
+    background: var(--light);
+    padding: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.money-stat-value-compact {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.money-stat-label-compact {
+    font-size: 10px;
+    color: var(--dark-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.money-list-compact {
+    max-height: 100px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.money-item-compact {
+    padding: 6px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.money-item-compact:hover {
+    background-color: rgba(0, 173, 181, 0.05);
+}
+
+.money-item-compact.active {
+    background-color: rgba(0, 173, 181, 0.1);
+}
+
+.money-item-compact:last-child {
+    border-bottom: none;
+}
+
+.money-icon-compact {
+    color: var(--primary);
+    margin-right: 6px;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.money-content-compact {
+    flex: 1;
+    min-width: 0;
+}
+
+.money-amount-compact {
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 12px;
+    margin-bottom: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.money-context-compact {
+    font-size: 10px;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.money-time-compact {
+    background: rgba(0, 173, 181, 0.1);
+    color: var(--primary);
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-family: monospace;
+    flex-shrink: 0;
+}
+
+.money-navigation-compact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+.nav-btn-compact {
+    background: var(--dark-gray);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.nav-btn-compact:hover:not(:disabled) {
+    background: var(--primary);
+    transform: translateY(-1px);
+}
+
+.nav-btn-compact:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#moneyPosition {
+    font-size: 11px;
+    color: var(--dark-gray);
+    padding: 0 8px;
+}
+
+.no-money-found-compact {
+    padding: 15px 10px;
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.no-money-found-compact i {
+    font-size: 24px;
+    color: var(--primary);
+    opacity: 0.7;
+}
+
+/* Dark mode support */
+.dark-transcript .money-detector-compact {
+    background: #2a2a3a;
+    border-color: rgba(0, 173, 181, 0.4);
+}
+
+.dark-transcript .money-stat-compact {
+    background: #343446;
+}
+
+.dark-transcript .money-list-compact {
+    border-color: #444;
+}
+
+.dark-transcript .money-item-compact {
+    border-color: #444;
+}
+
+.dark-transcript .money-amount-compact {
+    color: #e0e0e0;
+}
+
+.dark-transcript .money-navigation-compact {
+    border-color: #444;
+}
+
+/* Ensure the user input container is properly sized */
+.user-input-container {
+    width: 300px;
+}
+
+@media (max-width: 768px) {
+    .user-input-container {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+    }
     
+    .money-stats-compact {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Remove the old money detector panel from earlier if it exists */
+.money-detector-panel {
+    display: none !important;
+}
+
+.money-highlight {
+    background-color: rgba(0, 255, 0, 0.3) !important;
+    border: 1px solid #00ff00 !important;
+    border-radius: 3px !important;
+    padding: 0 2px !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.money-highlight:hover {
+    background-color: rgba(0, 255, 0, 0.5) !important;
+}
+
+.money-highlight.active {
+    background-color: rgba(0, 255, 0, 0.7) !important;
+    box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.3) !important;
+    animation: moneyPulse 1s infinite !important;
+}
+
+@keyframes moneyPulse {
+    0% { background-color: rgba(0, 255, 0, 0.7); }
+    50% { background-color: rgba(0, 255, 0, 0.4); }
+    100% { background-color: rgba(0, 255, 0, 0.7); }
+}
+
+/* Dark mode support */
+.dark-transcript .money-highlight {
+    background-color: rgba(0, 200, 0, 0.4) !important;
+    border-color: #00cc00 !important;
+}
+
+/* Money highlight toggle styles */
+.money-highlight-toggle {
+    background: var(--dark-gray);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    transition: all 0.2s;
+}
+
+.money-highlight-toggle:hover {
+    background: var(--primary);
+}
+
+.money-highlight-toggle.active {
+    background: var(--primary);
+}
+
+.money-highlight-toggle i {
+    font-size: 16px;
+}
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -1186,6 +1526,7 @@
   </div>
 </div>
 
+<!-- Replace the user input container HTML with this (combining both panels): -->
 <div id="userInputContainer" class="user-input-container">
     <div class="input-group">
         <i class="material-icons">person</i>
@@ -1199,6 +1540,63 @@
         <i class="material-icons">send</i> Submit Keyword
     </button>
     <div id="submitMessage" class="submit-message"></div>
+    
+    <!-- Money Detector - Compact Square Version -->
+    <div class="money-detector-compact" id="moneyDetectorCompact">
+        <div class="money-detector-header-compact" onclick="toggleMoneyDetector()">
+            <div class="money-header-left">
+                <i class="material-icons">attach_money</i>
+                <span>Money Detector</span>
+                <span id="moneyDetectorCount" class="money-count">0</span>
+            </div>
+            <i class="material-icons toggle-icon">expand_less</i>
+        </div>
+        
+        <div class="money-detector-content-compact" id="moneyDetectorContent">
+            <div class="money-controls-compact">
+                <button class="btn scan-money-btn" onclick="scanForMoney()" id="scanMoneyBtn">
+                    <i class="material-icons">search</i> Scan Money
+                </button>
+                <button class="money-highlight-toggle" id="moneyHighlightToggle" onclick="toggleMoneyHighlights()">
+                    <i class="material-icons">highlight</i> Toggle Highlights
+                </button>
+            </div>
+            
+            <div class="money-stats-compact" id="moneySummary" style="display: none;">
+                <div class="money-stat-compact">
+                    <div class="money-stat-value-compact" id="totalMoneyAmounts">0</div>
+                    <div class="money-stat-label-compact">Total</div>
+                </div>
+                <div class="money-stat-compact">
+                    <div class="money-stat-value-compact" id="largestAmount">$0</div>
+                    <div class="money-stat-label-compact">Largest</div>
+                </div>
+                <div class="money-stat-compact">
+                    <div class="money-stat-value-compact" id="smallestAmount">$0</div>
+                    <div class="money-stat-label-compact">Smallest</div>
+                </div>
+            </div>
+            
+            <div class="money-list-compact" id="moneyListContainer" style="display: none;">
+                <div id="moneyList"></div>
+            </div>
+            
+            <div class="money-navigation-compact" id="moneyNavigation" style="display: none;">
+                <button class="nav-btn-compact" onclick="prevMoneyItem()" id="prevMoneyBtn">
+                    <i class="material-icons">chevron_left</i>
+                </button>
+                <span id="moneyPosition">0/0</span>
+                <button class="nav-btn-compact" onclick="nextMoneyItem()" id="nextMoneyBtn">
+                    <i class="material-icons">chevron_right</i>
+                </button>
+            </div>
+            
+            <div id="noMoneyFound" class="no-money-found-compact" style="display: none;">
+                <i class="material-icons">money_off</i>
+                <span>No money found</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -1272,7 +1670,7 @@
     <div id="results" style="display:none; margin-top: 20px; padding: 15px; background: white; border-radius: 8px;"></div>
 
     <script>
-        // Enhanced risk phrases list with categories
+       // Enhanced risk phrases list with categories
         const categories = {
   "Misleading Regarding to company's rules": {
     keywords: [
@@ -1526,6 +1924,7 @@
 };
 
 
+
         // Flatten all keywords into one array (for looping/searching)
         const riskyPhrases = Object.values(categories).flatMap(cat => cat.keywords);
 
@@ -1555,6 +1954,11 @@
         let currentFileIndex = 0;
         const checkSound = document.getElementById('checkSound');
         const completionMessage = document.getElementById('completionMessage');
+        
+        // Global variables for money detector
+        let moneyItems = [];
+        let currentMoneyIndex = -1;
+        let moneyHighlightsEnabled = true; // Track if money highlights are enabled
         
         // Initialize file upload with order preservation
         document.getElementById('fileUpload').addEventListener('change', async function(e) {
@@ -1763,7 +2167,6 @@
             resultsContainer.style.display = 'none';
             
             // Case-insensitive regex search
-            //const riskyRegex = new RegExp(riskyPhrases.join("|"), "gi"); previous regex
             const riskyRegex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
             const matches = [...transcript.matchAll(riskyRegex)];
             
@@ -1905,12 +2308,100 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
             document.getElementById('firstRiskTime').textContent = firstTime || '--:--:--';
             document.getElementById('lastRiskTime').textContent = lastTime || '--:--:--';
             
-            // Highlight risks in original text
+            // Highlight risks in original text (this function preserves existing money highlights)
             highlightRisksInTranscript(riskItems);
+            
+            // AUTO-RUN MONEY DETECTION
+            setTimeout(() => {
+                autoScanForMoney();
+            }, 300);
             
             // Show results
             resultsContainer.style.display = 'block';
             btn.classList.remove('analyzing');
+        }
+        
+        // NEW FUNCTION: Auto scan for money during analysis
+        function autoScanForMoney() {
+            const transcript = document.getElementById('transcriptInput').value.trim();
+            
+            if (!transcript) {
+                return;
+            }
+            
+            try {
+                // Run money detection
+                moneyItems = findMoneyAmounts(transcript);
+                
+                // Update the money panel UI
+                displayMoneyResults();
+                
+                // Add money highlights to existing transcript if enabled
+                const highlightContainer = document.getElementById('highlightContainer');
+                if (highlightContainer && moneyItems.length > 0) {
+                    // Get the current plain text from the highlight container
+                    const contentDiv = highlightContainer.querySelector('div:last-child');
+                    if (contentDiv && moneyHighlightsEnabled) {
+                        addMoneyHighlightsToTranscript(moneyItems);
+                    }
+                }
+                
+                // Show the money detector panel if it's collapsed
+                const content = document.getElementById('moneyDetectorContent');
+                const header = document.querySelector('.money-detector-header-compact');
+                if (content && header && content.classList.contains('collapsed')) {
+                    content.classList.remove('collapsed');
+                    header.classList.remove('collapsed');
+                    const toggleIcon = header.querySelector('.toggle-icon');
+                    if (toggleIcon) {
+                        toggleIcon.textContent = 'expand_less';
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Error in auto money scan:', error);
+            }
+        }
+        
+        // NEW FUNCTION: Toggle money highlights
+        function toggleMoneyHighlights() {
+            const toggleBtn = document.getElementById('moneyHighlightToggle');
+            if (!toggleBtn) return;
+            
+            moneyHighlightsEnabled = !moneyHighlightsEnabled;
+            
+            if (moneyHighlightsEnabled) {
+                toggleBtn.classList.add('active');
+                toggleBtn.innerHTML = '<i class="material-icons">highlight</i> Hide Highlights';
+                
+                // Add money highlights
+                if (moneyItems.length > 0) {
+                    addMoneyHighlightsToTranscript(moneyItems);
+                }
+            } else {
+                toggleBtn.classList.remove('active');
+                toggleBtn.innerHTML = '<i class="material-icons">highlight_off</i> Show Highlights';
+                
+                // Remove money highlights
+                removeMoneyHighlights();
+            }
+        }
+        
+        // NEW FUNCTION: Remove money highlights
+        function removeMoneyHighlights() {
+            const highlightContainer = document.getElementById('highlightContainer');
+            if (!highlightContainer) return;
+            
+            // Find and remove all money highlights
+            const moneyHighlights = highlightContainer.querySelectorAll('.money-highlight');
+            moneyHighlights.forEach(highlight => {
+                const parent = highlight.parentNode;
+                const textNode = document.createTextNode(highlight.textContent);
+                parent.replaceChild(textNode, highlight);
+            });
+            
+            // Re-attach risk highlight handlers
+            reattachRiskHighlightHandlers();
         }
         
         function checkAllRisksCompleted() {
@@ -2024,103 +2515,121 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
             document.getElementById('resultsContainer').style.display = 'block';
         }
         
-       function highlightRisksInTranscript(riskItems) {
-    const textarea = document.getElementById('transcriptInput');
-    const text = textarea.value;
-    
-    // Remove any existing highlight container
-    const existingHighlight = document.getElementById('highlightContainer');
-    if (existingHighlight) {
-        existingHighlight.remove();
-    }
-    
-    // If no risks and no text, return early
-    if ((!riskItems || riskItems.length === 0) && !text) return;
-    
-    // Create a document fragment to work with
-    const fragment = document.createElement('div');
-    
-    // If we have risks, process them
-    if (riskItems && riskItems.length > 0) {
-        //const regex = new RegExp(riskyPhrases.join("|"), "gi"); previous regex
-        const regex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
-        let lastIndex = 0;
-        const matches = [...text.matchAll(regex)];
-        
-        matches.forEach((match, matchIndex) => {
-            // Add text before match
-            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+        // FIXED: This function now properly preserves risk highlight click handlers
+        function highlightRisksInTranscript(riskItems) {
+            const textarea = document.getElementById('transcriptInput');
+            const text = textarea.value;
             
-            // Add highlighted match
-            const highlight = document.createElement('span');
-            highlight.className = 'highlight';
-            highlight.textContent = match[0];
-            highlight.onclick = () => {
-                // Remove active class from all highlights
-                document.querySelectorAll('.highlight').forEach(el => {
-                    el.classList.remove('active');
+            // Save existing money highlights if any
+            const existingMoneyHighlights = [];
+            const highlightContainer = document.getElementById('highlightContainer');
+            
+            if (highlightContainer) {
+                // Store information about existing money highlights
+                const moneyHighlights = highlightContainer.querySelectorAll('.money-highlight');
+                moneyHighlights.forEach(highlight => {
+                    existingMoneyHighlights.push({
+                        element: highlight.cloneNode(true),
+                        index: parseInt(highlight.dataset.moneyIndex) || -1
+                    });
                 });
-                // Add active class to clicked highlight
-                highlight.classList.add('active');
-                
-                // Find corresponding risk item and scroll to it
-                const riskItem = document.querySelectorAll('.risk-item')[matchIndex];
-                if (riskItem) {
-                    riskItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    // Flash the risk item
-                    riskItem.style.backgroundColor = 'rgba(0, 173, 181, 0.2)';
-                    setTimeout(() => {
-                        riskItem.style.backgroundColor = '';
-                    }, 2000);
-                }
-            };
-            fragment.appendChild(highlight);
+            }
             
-            lastIndex = match.index + match[0].length;
-        });
-        
-        // Add remaining text
-        fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
-    } else {
-        // Just show the plain text if no risks
-        fragment.appendChild(document.createTextNode(text));
-    }
-    
-    // Only update if we have text
-    if (text) {
-        textarea.style.display = 'none';
-        
-        const highlightContainer = document.createElement('div');
-        highlightContainer.id = 'highlightContainer';
-        highlightContainer.className = 'container';
-        highlightContainer.style.marginTop = '-20px';
-        highlightContainer.style.padding = '15px';
-        highlightContainer.style.backgroundColor = 'white';
-        highlightContainer.style.borderRadius = '4px';
-        highlightContainer.style.border = '1px solid #ddd';
-        
-        // Only show the helper text if we have risks
-        if (riskItems && riskItems.length > 0) {
-            highlightContainer.innerHTML = `
-                <div style="font-size: 14px; color: var(--dark-gray); margin-bottom: 10px;">
-                    <i class="material-icons" style="vertical-align: middle; color: var(--warning);">highlight</i>
-                    Click highlighted phrases to jump to their risk entries
-                </div>
-                <div style="white-space: pre-wrap;"></div>
-            `;
-        } else {
-            highlightContainer.innerHTML = `
-                <div style="white-space: pre-wrap;"></div>
-            `;
+            // Remove existing highlight container
+            if (highlightContainer) {
+                highlightContainer.remove();
+            }
+            
+            // Now create new risk highlighting
+            const fragment = document.createElement('div');
+            
+            if (riskItems && riskItems.length > 0) {
+                const regex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
+                let lastIndex = 0;
+                const matches = [...text.matchAll(regex)];
+                
+                matches.forEach((match, matchIndex) => {
+                    fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+                    
+                    const highlight = document.createElement('span');
+                    highlight.className = 'highlight';
+                    highlight.textContent = match[0];
+                    highlight.dataset.matchIndex = matchIndex;
+                    
+                    // FIXED: Store the match index as a data attribute
+                    highlight.onclick = () => {
+                        // Remove active class from all highlights
+                        document.querySelectorAll('.highlight').forEach(el => {
+                            el.classList.remove('active');
+                        });
+                        // Add active class to clicked highlight
+                        highlight.classList.add('active');
+                        
+                        // Find corresponding risk item and scroll to it
+                        const riskItem = document.querySelectorAll('.risk-item')[matchIndex];
+                        if (riskItem) {
+                            riskItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            // Flash the risk item
+                            riskItem.style.backgroundColor = 'rgba(0, 173, 181, 0.2)';
+                            setTimeout(() => {
+                                riskItem.style.backgroundColor = '';
+                            }, 2000);
+                        }
+                    };
+                    fragment.appendChild(highlight);
+                    
+                    lastIndex = match.index + match[0].length;
+                });
+                
+                fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+            } else {
+                fragment.appendChild(document.createTextNode(text));
+            }
+            
+            if (text) {
+                textarea.style.display = 'none';
+                
+                const newHighlightContainer = document.createElement('div');
+                newHighlightContainer.id = 'highlightContainer';
+                newHighlightContainer.className = 'container';
+                newHighlightContainer.style.marginTop = '-20px';
+                newHighlightContainer.style.padding = '15px';
+                newHighlightContainer.style.backgroundColor = 'white';
+                newHighlightContainer.style.borderRadius = '4px';
+                newHighlightContainer.style.border = '1px solid #ddd';
+                
+                if (riskItems && riskItems.length > 0) {
+                    newHighlightContainer.innerHTML = `
+                        <div style="font-size: 14px; color: var(--dark-gray); margin-bottom: 10px;">
+                            <i class="material-icons" style="vertical-align: middle; color: var(--warning);">highlight</i>
+                            Risk phrases highlighted in yellow. Click to jump to risk entries.
+                            ${existingMoneyHighlights.length > 0 ? '<br><i class="material-icons" style="vertical-align: middle; color: #00ff00;">attach_money</i> Money amounts highlighted in green.' : ''}
+                        </div>
+                        <div style="white-space: pre-wrap;"></div>
+                    `;
+                } else {
+                    newHighlightContainer.innerHTML = `
+                        <div style="white-space: pre-wrap;"></div>
+                    `;
+                }
+                
+                // Append the fragment to the content div
+                const contentDiv = newHighlightContainer.querySelector('div:last-child');
+                contentDiv.appendChild(fragment);
+                
+                textarea.parentNode.insertBefore(newHighlightContainer, textarea.nextSibling);
+                
+                // Restore money highlights if they existed
+                if (existingMoneyHighlights.length > 0 && moneyItems.length > 0 && moneyHighlightsEnabled) {
+                    // Re-add money highlights using the updated function that preserves risk highlights
+                    addMoneyHighlightsToTranscript(moneyItems);
+                }
+            } else {
+                textarea.style.display = 'block';
+            }
         }
         
-        highlightContainer.querySelector('div:last-child').appendChild(fragment);
-        textarea.parentNode.insertBefore(highlightContainer, textarea.nextSibling);
-    } else {
-        textarea.style.display = 'block';
-    }
-}
-        
+        // FIXED: This function now works properly with risk highlights
         function highlightRiskInText(matchIndex) {
             // Remove active class from all highlights
             document.querySelectorAll('.highlight').forEach(el => {
@@ -2506,7 +3015,759 @@ function toggleInputContainer() {
             }, 3000);
         }
     }
-    </script>
+    
+    // ==============================================
+    // MONEY AMOUNT DETECTOR - COMPLETE IMPLEMENTATION
+    // ==============================================
+
+    // Improved money detection function
+    function findMoneyAmounts(text) {
+    const results = [];
+    
+    // More comprehensive patterns for money detection - including complex word numbers
+    const patterns = [
+      // Numeric amounts with or without commas: 100 - 99,999,999
+/\b(\d{1,3}(?:,\d{3})+|\d{3,8})(?:\.\d+)?\b(?![kmKM])(?!\s*(?:times|percent|people|reasons))/g,
+
+// ...
+        
+        // Suffix amounts: 1k - 999k, 1m - 99m (with optional space)
+        /\b(\d+(?:\.\d+)?)\s*([kmKM])\b/g,
+        
+        // Mixed: 20 thousand, 2 million, 1.5 million
+        /\b(\d+(?:\.\d+)?)\s+(thousand|million|k|m)\b/gi,
+        
+        // Word numbers: twenty thousand, five million
+        /\b(twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)\s+(thousand|million)\b/gi,
+        /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen)\s+(thousand|million)\b/gi,
+        
+        // NEW: Complex word numbers (e.g., "five thousand and sixty nine")
+        /\b((?:(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[-\s]?(?:one|two|three|four|five|six|seven|eight|nine)?|(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen))\s+)?(?:thousand|million)(?:\s+and\s+(?:(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[-\s]?(?:one|two|three|four|five|six|seven|eight|nine)?|(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen))?)?\b/gi,
+        
+        // Simple word numbers
+        /\b(five hundred|six hundred|seven hundred|eight hundred|nine hundred)\b/gi,
+        /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen)\s+hundred\b/gi,
+        
+        // Large word amounts
+        /\b(half[\s-]*a[\s-]*million|quarter[\s-]*of[\s-]*a[\s-]*million)\b/gi,
+        
+        // General word number pattern (catch-all)
+        /\b((?:(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[-\s]?(?:one|two|three|four|five|six|seven|eight|nine)?|(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen))\s+)?(?:hundred|thousand|million)(?:\s+(?:and\s+)?(?:(?:twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety)[-\s]?(?:one|two|three|four|five|six|seven|eight|nine)?|(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen))?)?\b/gi
+    ];
+    
+    // Expanded word to number mapping
+    const wordToNumber = {
+        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+        'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+        'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15,
+        'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19,
+        'twenty': 20, 'thirty': 30, 'forty': 40, 'fifty': 50,
+        'sixty': 60, 'seventy': 70, 'eighty': 80, 'ninety': 90,
+        'hundred': 100, 'thousand': 1000, 'million': 1000000,
+        'half': 0.5, 'quarter': 0.25, 'and': 0
+    };
+    
+    // Find and mark excluded areas first
+    const excludedAreas = [];
+    
+    // Timestamps in various formats
+    const timestampPatterns = [
+        /\[\d{1,2}[:.]\d{2}(?:[:.]\d{2})?(?:\s*[-–]\s*\d{1,2}[:.]\d{2}(?:[:.]\d{2})?)?\]/g,
+        /\(\d{1,2}[:.]\d{2}(?:[:.]\d{2})?\)/g,
+        /\d{1,2}:\d{2}(?::\d{2})?\s*[ap]m/gi,
+        /\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/g,  // Dates
+    ];
+    
+    timestampPatterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(text)) !== null) {
+            excludedAreas.push({ start: match.index, end: match.index + match[0].length });
+        }
+    });
+    
+    // Phone numbers
+    const phonePatterns = [
+        /(?:\+\d{1,3}[\s-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}\b/g,
+        /\b\d{3}[-.]\d{4}\b/g,
+        /\b\d{5,15}\b(?=\s*(?:phone|mobile|tel|number))/gi
+    ];
+    
+    phonePatterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(text)) !== null) {
+            excludedAreas.push({ start: match.index, end: match.index + match[0].length });
+        }
+    });
+    
+    // ID numbers, codes, etc.
+    const codePatterns = [
+        /\b(?:ID|id|client|account|order|ticket|ref|reference|code)[#:]?\s*\d+\b/gi,
+        /\b\d{6,}\b(?=\s*(?:ID|id|code))/gi
+    ];
+    
+    codePatterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(text)) !== null) {
+            excludedAreas.push({ start: match.index, end: match.index + match[0].length });
+        }
+    });
+    
+    // List markers: 1., 2), 3-
+    const listPatterns = [
+        /^\d+[.)-]\s*$/gm,
+        /\b\d+[.)-]\s+(?=\w)/g
+    ];
+    
+    listPatterns.forEach(pattern => {
+        let match;
+        while ((match = pattern.exec(text)) !== null) {
+            excludedAreas.push({ start: match.index, end: match.index + match[0].length });
+        }
+    });
+    
+    // Helper function to check if position is excluded
+    function isExcluded(pos, length = 0) {
+        return excludedAreas.some(area => {
+            const overlaps = !(pos + length <= area.start || pos >= area.end);
+            return overlaps;
+        });
+    }
+    
+    // Helper function to parse word numbers - ENHANCED VERSION
+    function parseWordNumber(text) {
+        const lowerText = text.toLowerCase().trim();
+        
+        // Handle special cases
+        if (lowerText.includes('half a million') || lowerText.includes('half-a-million')) {
+            return 500000;
+        }
+        if (lowerText.includes('quarter of a million') || lowerText.includes('quarter-of-a-million')) {
+            return 250000;
+        }
+        
+        // Clean the text
+        let cleanText = lowerText.replace(/[-\s]+and[-\s]+/g, ' ').replace(/-/g, ' ');
+        const words = cleanText.split(/\s+/);
+        
+        let total = 0;
+        let current = 0;
+        let lastMultiplier = 1;
+        
+        for (let i = 0; i < words.length; i++) {
+            const word = words[i];
+            
+            // Skip "and"
+            if (word === 'and') continue;
+            
+            const num = wordToNumber[word];
+            
+            if (num !== undefined) {
+                if (num === 100 || num === 1000 || num === 1000000) {
+                    // Handle multipliers (hundred, thousand, million)
+                    if (current === 0) current = 1;
+                    
+                    if (num === 100) {
+                        // Handle hundreds
+                        current *= 100;
+                        lastMultiplier = 1;
+                    } else {
+                        // Handle thousands or millions
+                        total += current * num;
+                        current = 0;
+                        lastMultiplier = num;
+                    }
+                } else {
+                    // Handle regular numbers
+                    current += num;
+                    lastMultiplier = 1;
+                }
+            }
+        }
+        
+        // Add any remaining current value
+        total += current * lastMultiplier;
+        
+        return total;
+    }
+    
+    // Process all patterns
+    patterns.forEach((pattern, patternIndex) => {
+        pattern.lastIndex = 0;
+        while ((match = pattern.exec(text)) !== null) {
+            const fullMatch = match[0];
+            const startPos = match.index;
+            const endPos = startPos + fullMatch.length;
+            
+            // Skip if in excluded area
+            if (isExcluded(startPos, fullMatch.length)) {
+                continue;
+            }
+            
+            // Get context for additional filtering
+            const contextBefore = text.substring(Math.max(0, startPos - 50), startPos);
+            const contextAfter = text.substring(endPos, Math.min(text.length, endPos + 50));
+            const fullContext = contextBefore + fullMatch + contextAfter;
+            
+            // Skip if it's likely part of a phone number or ID
+           // Skip if it's likely part of a phone number or ID
+const exclusionKeywords = ['phone', 'mobile', 'tel', 'id', 'code', 'ref', 'reference'];
+const hasExclusionKeyword = exclusionKeywords.some(keyword => 
+    fullContext.toLowerCase().includes(keyword)
+);
+
+// Only exclude if the keyword appears very close to the amount
+if (hasExclusionKeyword) {
+    const lowerContext = fullContext.toLowerCase();
+    const amountIndex = lowerContext.indexOf(match[0].toLowerCase());
+    const keywordDistance = Math.min(
+        ...exclusionKeywords
+            .filter(kw => lowerContext.includes(kw))
+            .map(kw => {
+                const kwIndex = lowerContext.indexOf(kw);
+                return Math.abs(kwIndex - amountIndex);
+            })
+    );
+    
+    // Only exclude if keyword is within 10 characters of the amount
+    if (keywordDistance < 10) {
+        continue;
+    }
+}
+            
+            // Skip if it's part of a date pattern
+            const datePatterns = [
+                /\d{4}[-./]\d{1,2}[-./]\d{1,2}/,
+                /\d{1,2}[-./]\d{1,2}[-./]\d{4}/,
+                /\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)/i,
+                /(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+\d{1,2}/i
+            ];
+            
+            if (datePatterns.some(datePattern => datePattern.test(fullContext))) {
+                continue;
+            }
+            
+            let numericValue = null;
+            let displayAmount = fullMatch;
+            
+            // Process based on pattern type
+            if (patternIndex === 0 || patternIndex === 1) { // Numeric patterns
+                // Remove commas for parsing
+                const cleanNumber = fullMatch.replace(/,/g, '');
+                numericValue = parseFloat(cleanNumber);
+                
+                // Additional validation for 4-digit numbers
+                if (patternIndex === 1) {
+                    // Check if 4-digit number might be part of something else
+                    const fourDigitPattern = /^\d{4}$/;
+                    if (fourDigitPattern.test(cleanNumber)) {
+                        // Check context more carefully for 4-digit numbers
+                        const isYear = parseInt(cleanNumber) >= 1900 && parseInt(cleanNumber) <= 2100;
+                        const isTime = /\d{4}\s*(?:hours|hrs|minutes|mins|seconds|secs)/i.test(fullContext);
+                        
+                        if (isYear || isTime) {
+                            continue;
+                        }
+                    }
+                }
+                
+                // Validate range
+                if (!numericValue || numericValue < 100 || numericValue > 99999999) {
+    continue;
+}
+                
+            } else if (patternIndex === 2) { // Suffix amounts (k, m)
+                const num = parseFloat(match[1]);
+                const suffix = match[2].toLowerCase();
+                
+                if (suffix === 'k') {
+                    numericValue = num * 1000;
+                } else if (suffix === 'm') {
+                    numericValue = num * 1000000;
+                }
+                
+                if (!numericValue || numericValue < 1000 || numericValue > 99999999) {
+                    continue;
+                }
+                
+            } else if (patternIndex === 3) { // Mixed numbers
+                const num = parseFloat(match[1]);
+                const suffix = match[2].toLowerCase();
+                
+                if (suffix === 'thousand' || suffix === 'k') {
+                    numericValue = num * 1000;
+                } else if (suffix === 'million' || suffix === 'm') {
+                    numericValue = num * 1000000;
+                }
+                
+                if (!numericValue || numericValue < 1000 || numericValue > 99999999) {
+                    continue;
+                }
+                
+            } else if (patternIndex >= 4) { // Word numbers
+                // Parse word numbers using enhanced parser
+                numericValue = parseWordNumber(fullMatch);
+                
+                if (!numericValue || numericValue < 1000 || numericValue > 99999999) {
+                    continue;
+                }
+            }
+            
+            // Final validation - check context for non-money usage
+            if (numericValue) {
+                // Check for phrases like "thousand times", "million percent", etc.
+                const nonMoneyPatterns = [
+                    /\d+\s+(?:times|percent|people|users|members|followers|views|likes|shares)/i,
+                    /(?:thousand|million|billion)\s+(?:times|percent|people|users|members)/i,
+                    /a\s+(?:thousand|million|billion)/i,
+                    /(?:several|many|few)\s+(?:thousand|million)/i
+                ];
+                
+                const isNonMoney = nonMoneyPatterns.some(pattern => pattern.test(fullContext));
+                if (isNonMoney) {
+                    continue;
+                }
+                
+                // Find nearest timestamp before this match
+                let time = null;
+                const timeRegex = /\[(\d{1,2}:\d{2}:\d{2})\s*-\s*\d{1,2}:\d{2}:\d{2}\]/g;
+                const timeMatches = [...text.matchAll(timeRegex)];
+                
+                for (let i = timeMatches.length - 1; i >= 0; i--) {
+                    if (timeMatches[i].index < startPos) {
+                        time = timeMatches[i][1];
+                        break;
+                    }
+                }
+                
+                // Determine money type
+                let moneyType = 'numeric';
+                if (patternIndex >= 2 && patternIndex <= 3) {
+                    moneyType = 'suffix';
+                } else if (patternIndex >= 4) {
+                    moneyType = 'word';
+                }
+                
+                // Check for duplicates at same position
+                const duplicateIndex = results.findIndex(r => Math.abs(r.position - startPos) < 3);
+                if (duplicateIndex === -1) {
+                    results.push({
+                        amount: displayAmount,
+                        fullText: fullMatch,
+                        numericValue: numericValue,
+                        position: startPos,
+                        time: time,
+                        moneyType: moneyType
+                    });
+                }
+            }
+        }
+    });
+    
+    // Sort by position
+    results.sort((a, b) => a.position - b.position);
+    
+    // Filter out results that are too close together
+    const finalResults = [];
+    let lastPosition = -10;
+    
+    results.forEach(item => {
+        if (item.position - lastPosition > 3) {
+            finalResults.push(item);
+            lastPosition = item.position;
+        }
+    });
+    
+    return finalResults;
+}
+
+    // Money detector UI functions
+    function toggleMoneyDetector() {
+        const content = document.getElementById('moneyDetectorContent');
+        const header = document.querySelector('.money-detector-header-compact');
+        
+        if (!content || !header) return;
+        
+        const isCollapsed = content.classList.contains('collapsed');
+        content.classList.toggle('collapsed');
+        header.classList.toggle('collapsed');
+        
+        // Update icon
+        const toggleIcon = header.querySelector('.toggle-icon');
+        if (toggleIcon) {
+            toggleIcon.textContent = isCollapsed ? 'expand_less' : 'expand_more';
+        }
+    }
+
+    function scanForMoney() {
+        const btn = document.getElementById('scanMoneyBtn');
+        if (!btn) return;
+        
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="material-icons">hourglass_empty</i> Scanning...';
+        btn.disabled = true;
+        
+        const transcript = document.getElementById('transcriptInput').value.trim();
+        
+        if (!transcript) {
+            alert('Please paste or upload a transcript first');
+            btn.innerHTML = originalHTML;
+            btn.disabled = false;
+            return;
+        }
+        
+        // Clear previous MONEY results only (not risk highlights)
+        moneyItems = [];
+        currentMoneyIndex = -1;
+        
+        // Use setTimeout to allow UI to update
+        setTimeout(() => {
+            try {
+                moneyItems = findMoneyAmounts(transcript);
+                displayMoneyResults();
+                
+                // Add money highlights to existing transcript if enabled
+                const highlightContainer = document.getElementById('highlightContainer');
+                if (highlightContainer && moneyItems.length > 0) {
+                    // Get the current plain text from the highlight container
+                    const contentDiv = highlightContainer.querySelector('div:last-child');
+                    if (contentDiv && moneyHighlightsEnabled) {
+                        addMoneyHighlightsToTranscript(moneyItems);
+                    }
+                }
+            } catch (error) {
+                console.error('Error scanning for money:', error);
+                alert('Error scanning for money amounts. Please check the console for details.');
+            } finally {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }
+        }, 300);
+    }
+
+    function displayMoneyResults() {
+        const moneyList = document.getElementById('moneyList');
+        const container = document.getElementById('moneyListContainer');
+        const navigation = document.getElementById('moneyNavigation');
+        const noMoneyFound = document.getElementById('noMoneyFound');
+        const summary = document.getElementById('moneySummary');
+        const countSpan = document.getElementById('moneyDetectorCount');
+        
+        if (!moneyList || !container || !navigation || !noMoneyFound || !summary || !countSpan) return;
+        
+        if (moneyItems.length === 0) {
+            container.style.display = 'none';
+            navigation.style.display = 'none';
+            noMoneyFound.style.display = 'flex';
+            summary.style.display = 'none';
+            countSpan.textContent = '0';
+            return;
+        }
+        
+        // Update summary
+        countSpan.textContent = moneyItems.length;
+        document.getElementById('totalMoneyAmounts').textContent = moneyItems.length;
+        
+        // Calculate largest and smallest amounts
+        const numericValues = moneyItems.map(item => item.numericValue);
+        const largest = Math.max(...numericValues);
+        const smallest = Math.min(...numericValues);
+        
+        document.getElementById('largestAmount').textContent = formatMoneyCompact(largest);
+        document.getElementById('smallestAmount').textContent = formatMoneyCompact(smallest);
+        
+        summary.style.display = 'grid';
+        container.style.display = 'block';
+        navigation.style.display = 'flex';
+        noMoneyFound.style.display = 'none';
+        
+        // Clear list
+        moneyList.innerHTML = '';
+        
+        // Add items with compact styling
+        moneyItems.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'money-item-compact';
+            itemElement.dataset.index = index;
+            
+            itemElement.innerHTML = `
+                <i class="material-icons money-icon-compact">attach_money</i>
+                <div class="money-content-compact">
+                    <div class="money-amount-compact money-type-${item.moneyType}">
+                        ${formatMoneyCompact(item.numericValue)}
+                    </div>
+                    <div class="money-context-compact">
+                        <span>${item.amount}</span>
+                        ${item.time ? `<span class="money-time-compact">${item.time}</span>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            itemElement.onclick = () => {
+                highlightMoneyInText(index);
+                setActiveMoneyItem(index);
+            };
+            
+            moneyList.appendChild(itemElement);
+        });
+        
+        // Set first item as active
+        if (moneyItems.length > 0) {
+            setActiveMoneyItem(0);
+        }
+    }
+
+    function setActiveMoneyItem(index) {
+        if (index < 0 || index >= moneyItems.length) return;
+        
+        // Update current index
+        currentMoneyIndex = index;
+        
+        // Update navigation buttons
+        const prevBtn = document.getElementById('prevMoneyBtn');
+        const nextBtn = document.getElementById('nextMoneyBtn');
+        const positionSpan = document.getElementById('moneyPosition');
+        
+        if (prevBtn) prevBtn.disabled = index === 0;
+        if (nextBtn) nextBtn.disabled = index === moneyItems.length - 1;
+        if (positionSpan) positionSpan.textContent = `${index + 1}/${moneyItems.length}`;
+        
+        // Update active state in list
+        document.querySelectorAll('.money-item-compact').forEach((item, i) => {
+            if (i === index) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+        
+        // Scroll to active item
+        const activeItem = document.querySelector(`.money-item-compact[data-index="${index}"]`);
+        if (activeItem) {
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Highlight in transcript
+        highlightMoneyInText(index);
+    }
+
+    function prevMoneyItem() {
+        if (currentMoneyIndex > 0) {
+            setActiveMoneyItem(currentMoneyIndex - 1);
+        }
+    }
+
+    function nextMoneyItem() {
+        if (currentMoneyIndex < moneyItems.length - 1) {
+            setActiveMoneyItem(currentMoneyIndex + 1);
+        }
+    }
+
+    function formatMoneyCompact(amount) {
+        if (amount >= 1000000) {
+            return `${(amount / 1000000).toFixed(1)}M`;
+        } else if (amount >= 1000) {
+            return `${(amount / 1000).toFixed(1)}K`;
+        }
+        return `${amount.toLocaleString()}`;
+    }
+
+    // FIXED: This function now properly preserves risk highlight click handlers
+    function addMoneyHighlightsToTranscript(items) {
+        const highlightContainer = document.getElementById('highlightContainer');
+        if (!highlightContainer) {
+            console.warn('No highlight container found');
+            return;
+        }
+        
+        const contentDiv = highlightContainer.querySelector('div:last-child');
+        if (!contentDiv) {
+            console.warn('No content div found in highlight container');
+            return;
+        }
+        
+        // Get the current text content (without HTML tags) for position calculation
+        const textContent = contentDiv.textContent || contentDiv.innerText;
+        
+        // Create a deep clone of the current contentDiv to work with
+        const tempDiv = contentDiv.cloneNode(true);
+        
+        // Process money items in reverse order (so positions don't shift)
+        const sortedItems = [...items].sort((a, b) => b.position - a.position);
+        
+        sortedItems.forEach((item, itemIndex) => {
+            const textPos = item.position;
+            let currentPos = 0;
+            let found = false;
+            
+            // Walk through DOM nodes to find the position
+            function walkNodes(node) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const textLength = node.textContent.length;
+                    if (currentPos <= textPos && currentPos + textLength > textPos) {
+                        // Found the text node containing our position
+                        const offset = textPos - currentPos;
+                        const highlightLength = item.fullText.length;
+                        
+                        // Check if we're within bounds
+                        if (offset + highlightLength <= node.textContent.length) {
+                            const beforeText = node.textContent.substring(0, offset);
+                            const highlightText = node.textContent.substring(offset, offset + highlightLength);
+                            const afterText = node.textContent.substring(offset + highlightLength);
+                            
+                            // Create new elements
+                            const newTextNodeBefore = document.createTextNode(beforeText);
+                            const moneyHighlight = document.createElement('span');
+                            moneyHighlight.className = 'money-highlight';
+                            moneyHighlight.dataset.moneyIndex = itemIndex.toString();
+                            moneyHighlight.textContent = highlightText;
+                            
+                            moneyHighlight.onclick = (e) => {
+                                e.stopPropagation();
+                                highlightMoneyInText(itemIndex);
+                                setActiveMoneyItem(itemIndex);
+                            };
+                            
+                            const newTextNodeAfter = document.createTextNode(afterText);
+                            
+                            // Replace the node
+                            const parent = node.parentNode;
+                            parent.insertBefore(newTextNodeAfter, node);
+                            parent.insertBefore(moneyHighlight, newTextNodeAfter);
+                            parent.insertBefore(newTextNodeBefore, moneyHighlight);
+                            parent.removeChild(node);
+                            
+                            found = true;
+                            return true;
+                        }
+                    }
+                    currentPos += textLength;
+                } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'SCRIPT') {
+                    for (let i = 0; i < node.childNodes.length; i++) {
+                        if (walkNodes(node.childNodes[i])) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            
+            walkNodes(tempDiv);
+        });
+        
+        // Replace the content with our modified version
+        contentDiv.parentNode.replaceChild(tempDiv, contentDiv);
+        
+        // IMPORTANT: Re-attach click handlers to risk highlights
+        reattachRiskHighlightHandlers();
+    }
+    
+    // FIXED: Helper function to re-attach risk highlight click handlers
+    function reattachRiskHighlightHandlers() {
+        const highlightContainer = document.getElementById('highlightContainer');
+        if (!highlightContainer) return;
+        
+        const riskHighlights = highlightContainer.querySelectorAll('.highlight');
+        riskHighlights.forEach((highlight, index) => {
+            // Remove any existing handler and add fresh one
+            highlight.onclick = null;
+            highlight.onclick = () => {
+                // Remove active class from all highlights
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.classList.remove('active');
+                });
+                // Add active class to clicked highlight
+                highlight.classList.add('active');
+                
+                // Find corresponding risk item and scroll to it
+                const riskItem = document.querySelectorAll('.risk-item')[index];
+                if (riskItem) {
+                    riskItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    // Flash the risk item
+                    riskItem.style.backgroundColor = 'rgba(0, 173, 181, 0.2)';
+                    setTimeout(() => {
+                        riskItem.style.backgroundColor = '';
+                    }, 2000);
+                }
+            };
+        });
+    }
+
+    function highlightMoneyInText(index) {
+        if (index < 0 || index >= moneyItems.length) return;
+        
+        // Remove active class from all money highlights
+        document.querySelectorAll('.money-highlight').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // Add active class to clicked highlight
+        const highlights = document.querySelectorAll('.money-highlight');
+        if (highlights.length > index) {
+            highlights[index].classList.add('active');
+            highlights[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    // Initialize money detector on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ensure money detector is collapsed by default
+        setTimeout(() => {
+            const content = document.getElementById('moneyDetectorContent');
+            const header = document.querySelector('.money-detector-header-compact');
+            if (content && header) {
+                content.classList.add('collapsed');
+                header.classList.add('collapsed');
+                const toggleIcon = header.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = 'expand_more';
+                }
+            }
+            
+            // Initialize the money highlight toggle button
+            const toggleBtn = document.getElementById('moneyHighlightToggle');
+            if (toggleBtn) {
+                toggleBtn.classList.add('active'); // Start with highlights enabled
+                toggleBtn.innerHTML = '<i class="material-icons">highlight</i> Hide Highlights';
+            }
+        }, 100);
+        
+        // Override the analyzeTranscript function to reset money detector UI
+        const originalAnalyzeTranscript = window.analyzeTranscript;
+        if (typeof originalAnalyzeTranscript === 'function') {
+            window.analyzeTranscript = function() {
+                // Clear money items but DON'T clear the highlights immediately
+                // They will be preserved by highlightRisksInTranscript
+                moneyItems = [];
+                currentMoneyIndex = -1;
+                
+                const moneyList = document.getElementById('moneyList');
+                const container = document.getElementById('moneyListContainer');
+                const navigation = document.getElementById('moneyNavigation');
+                const noMoneyFound = document.getElementById('noMoneyFound');
+                const summary = document.getElementById('moneySummary');
+                const countSpan = document.getElementById('moneyDetectorCount');
+                
+                if (moneyList) moneyList.innerHTML = '';
+                if (container) container.style.display = 'none';
+                if (navigation) navigation.style.display = 'none';
+                if (noMoneyFound) noMoneyFound.style.display = 'none';
+                if (summary) summary.style.display = 'none';
+                if (countSpan) countSpan.textContent = '0';
+                
+                // Call original function
+                return originalAnalyzeTranscript.apply(this, arguments);
+            };
+        }
+    });
+
+    // Export functions for global access
+    window.findMoneyAmounts = findMoneyAmounts;
+    window.scanForMoney = scanForMoney;
+    window.toggleMoneyDetector = toggleMoneyDetector;
+    window.prevMoneyItem = prevMoneyItem;
+    window.nextMoneyItem = nextMoneyItem;
+    window.toggleMoneyHighlights = toggleMoneyHighlights;
+</script>
 <div id="missingSAMPopup" class="professional-popup">
   <div class="popup-header">
     <div class="header-icon">
@@ -2552,27 +3813,3 @@ function toggleInputContainer() {
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
