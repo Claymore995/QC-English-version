@@ -1916,49 +1916,53 @@
         
         // Find all money amounts in text
         function findMoneyAmounts(text) {
-            if (!moneyHighlightEnabled) return [];
-            
-            const matches = [];
-            
-            // Check numeric patterns
-            let numericMatch;
-            const numericRegex = moneyPatterns.numeric;
-            while ((numericMatch = numericRegex.exec(text)) !== null) {
-                if (isValidMoneyAmount(numericMatch[0])) {
-                    matches.push({
-                        text: numericMatch[0],
-                        start: numericMatch.index,
-                        end: numericMatch.index + numericMatch[0].length
-                    });
-                }
-            }
-            
-            // Check word patterns
-            let wordMatch;
-            const wordRegex = moneyPatterns.word;
-            while ((wordMatch = wordRegex.exec(text)) !== null) {
-                if (isValidMoneyAmount(wordMatch[0])) {
-                    // Check if this overlaps with any existing match
-                    const overlaps = matches.some(match => 
-                        (wordMatch.index >= match.start && wordMatch.index < match.end) ||
-                        (wordMatch.index + wordMatch[0].length > match.start && wordMatch.index + wordMatch[0].length <= match.end)
-                    );
-                    
-                    if (!overlaps) {
-                        matches.push({
-                            text: wordMatch[0],
-                            start: wordMatch.index,
-                            end: wordMatch.index + wordMatch[0].length
-                        });
-                    }
-                }
-            }
-            
-            // Sort by position
-            matches.sort((a, b) => a.start - b.start);
-            
-            return matches;
-        }
+    const results = [];
+
+    // Prevent matching ages, timestamps, or brackets
+    const exclusionRegex = /\b(age|years?|yrs?)\b|\[\d{1,2}:\d{2}(:\d{2})?\]/i;
+
+    const moneyRegex = new RegExp(
+        [
+            // Currency symbol + number
+            `(?:[$€£]\\s?\\d{1,3}(?:,\\d{3})*(?:\\.\\d+)?(?:\\s?(?:k|K|m|M|million|thousand))?)`,
+
+            // Number + currency word
+            `(?:\\d{1,3}(?:,\\d{3})*(?:\\.\\d+)?\\s?(?:usd|eur|gbp|dollars?|euros?|pounds?))`,
+
+            // Number + k / m
+            `(?:\\d+(?:\\.\\d+)?\\s?(?:k|K|m|M))`,
+
+            // Number + thousand / million (WORDS)
+            `(?:\\d+(?:\\.\\d+)?\\s?(?:thousand|million))`,
+
+            // Large raw numbers (100 → millions)
+            `(?:\\b(?:100|[1-9]\\d{2,5}|\\d{1,3}(?:,\\d{3})+)\\b)`
+        ].join('|'),
+        'gi'
+    );
+
+    let match;
+    while ((match = moneyRegex.exec(text)) !== null) {
+        const value = match[0];
+
+        // Skip excluded contexts
+        const surrounding = text.slice(
+            Math.max(0, match.index - 10),
+            match.index + value.length + 10
+        );
+
+        if (exclusionRegex.test(surrounding)) continue;
+
+        results.push({
+            text: value,
+            start: match.index,
+            end: match.index + value.length
+        });
+    }
+
+    return results;
+}
+
         
         // Initialize file upload with order preservation
         document.getElementById('fileUpload').addEventListener('change', async function(e) {
