@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +13,7 @@
             --danger: #FF2E63;
             --success: #00ADB5;
             --warning: #FFC93C;
+            --money-highlight: #4CAF50;
         }
         
         body {
@@ -731,7 +731,7 @@
 .risk-category[data-category="Missing Knowledge of the Market"] { background-color: #154360; }
 .risk-category[data-category="False Market Information"] { background-color: #27AE60; }
 .risk-category[data-category="No Reference to Source"] { background-color: #2C3E50; }
-.risk-category[data-category="Agent hides or doesn’t explain/provide the client all Trading Instruments"] { background-color: #935116; }
+.risk-category[data-category="Agent hides or doesn't explain/provide the client all Trading Instruments"] { background-color: #935116; }
 .risk-category[data-category="Lack of Basic Trading Knowledge"] { background-color: #2980B9; }
 .risk-category[data-category="Failing to Explain Margin/Margin call"] { background-color: #34495E; }
 
@@ -1151,9 +1151,211 @@
   }
 }
 
-  
+/* New Money Highlight CSS */
+.money-highlight {
+    background-color: rgba(76, 175, 80, 0.3);
+    padding: 1px 2px;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    cursor: default;
+}
 
+.money-highlight:hover {
+    background-color: rgba(76, 175, 80, 0.4);
+}
+
+.dark-transcript .money-highlight {
+    background-color: rgba(76, 175, 80, 0.4);
+    color: #fff;
+    font-weight: 500;
+}
+
+.dark-transcript .money-highlight:hover {
+    background-color: rgba(76, 175, 80, 0.6);
+}
+
+/* Money Toggle Styling */
+/* Enhanced Money Toggle Styling */
+.toggle-group {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.money-toggle {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 173, 181, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: relative;
+}
+
+.money-toggle:hover {
+    background-color: white;
+    border-color: var(--primary);
+    box-shadow: 0 3px 8px rgba(0, 173, 181, 0.15);
+    transform: translateY(-1px);
+}
+
+.money-toggle:active {
+    transform: translateY(0);
+}
+
+.money-toggle input[type="checkbox"] {
+    appearance: none;
+    width: 42px;
+    height: 22px;
+    background: #e0e0e0;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.money-toggle input[type="checkbox"]:checked {
+    background-color: var(--money-highlight);
+}
+
+.money-toggle input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.money-toggle input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+}
+
+.money-toggle .toggle-label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.money-toggle .material-icons {
+    color: var(--money-highlight);
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.money-toggle input[type="checkbox"]:checked ~ .toggle-label .material-icons {
+    color: var(--money-highlight);
+    filter: brightness(0.9);
+}
+
+.money-toggle .toggle-label span {
+    font-weight: 500;
+    color: var(--dark-gray);
+    transition: color 0.3s ease;
+}
+
+.money-toggle input[type="checkbox"]:checked ~ .toggle-label span {
+    color: var(--dark);
+}
+
+/* Dark mode support */
+.dark-transcript .money-toggle {
+    background-color: rgba(30, 30, 46, 0.95);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark-transcript .money-toggle:hover {
+    background-color: rgba(30, 30, 46, 1);
+    border-color: rgba(0, 173, 181, 0.5);
+}
+
+.dark-transcript .money-toggle .toggle-label {
+    color: #e0e0e0;
+}
+
+.dark-transcript .money-toggle input[type="checkbox"] {
+    background: #444;
+}
+
+.dark-transcript .money-toggle input[type="checkbox"]:checked {
+    background-color: var(--money-highlight);
+}
+
+.dark-transcript .money-toggle .toggle-label span {
+    color: rgba(224, 224, 224, 0.9);
+}
+
+.dark-transcript .money-toggle input[type="checkbox"]:checked ~ .toggle-label span {
+    color: #e0e0e0;
+}
+
+/* Controls row adjustments */
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.controls-row .controls {
+    margin-top: 0;
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .controls-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
     
+    .controls-row .controls {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .toggle-group {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+    
+    .money-toggle {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .money-toggle .toggle-label span {
+        font-size: 13px;
+    }
+    
+    .money-toggle input[type="checkbox"] {
+        margin-right: 10px;
+    }
+}
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -1211,17 +1413,29 @@
         <div>
             <textarea id="transcriptInput" placeholder="Paste your conversation transcript here...&#10;Example format:&#10;&#10;[09:30:00 - 09:31:00] Hello, trust me this is risk free!&#10;[09:31:00 - 09:32:00] We can meet in London."></textarea>
             
-            <div class="controls">
-                <div>
-                    <input type="file" id="fileUpload" accept=".txt,.csv" class="file-upload" multiple>
-                    <label for="fileUpload" class="file-upload-label" id="fileUploadLabel">
-                        <i class="material-icons">upload</i> Upload Transcript(s)
-                    </label>
-                </div>
-                <button class="btn" onclick="analyzeTranscript()">
-                    <i class="material-icons">search</i> Analyze Transcript
-                </button>
+           <div class="controls-row">
+    <div class="controls">
+        <div>
+            <input type="file" id="fileUpload" accept=".txt,.csv" class="file-upload" multiple>
+            <label for="fileUpload" class="file-upload-label" id="fileUploadLabel">
+                <i class="material-icons">upload</i> Upload Transcript(s)
+            </label>
+        </div>
+        <button class="btn" onclick="analyzeTranscript()">
+            <i class="material-icons">search</i> Analyze Transcript
+        </button>
+    </div>
+    
+    <div class="toggle-group">
+        <label class="money-toggle">
+            <input type="checkbox" id="moneyHighlightToggle" checked>
+            <div class="toggle-label">
+                <i class="material-icons">attach_money</i>
+                
             </div>
+        </label>
+    </div>
+</div>
             
             <div id="fileList" class="file-list" style="display: none;">
                 <h3 style="margin-top: 0; margin-bottom: 10px;">Uploaded Files</h3>
@@ -1273,7 +1487,7 @@
     <div id="results" style="display:none; margin-top: 20px; padding: 15px; background: white; border-radius: 8px;"></div>
 
     <script>
-        // Enhanced risk phrases list with categories
+         // Enhanced risk phrases list with categories
         const categories = {
   "Misleading Regarding to company's rules": {
     keywords: [
@@ -1527,6 +1741,7 @@
 };
 
 
+
         // Flatten all keywords into one array (for looping/searching)
         const riskyPhrases = Object.values(categories).flatMap(cat => cat.keywords);
 
@@ -1556,6 +1771,194 @@
         let currentFileIndex = 0;
         const checkSound = document.getElementById('checkSound');
         const completionMessage = document.getElementById('completionMessage');
+        
+        // Money highlight toggle state
+        let moneyHighlightEnabled = true;
+        const moneyToggle = document.getElementById('moneyHighlightToggle');
+        
+        // Initialize money toggle
+        moneyToggle.addEventListener('change', function() {
+            moneyHighlightEnabled = this.checked;
+            if (document.getElementById('highlightContainer')) {
+                // Re-highlight the transcript with current settings
+                const riskItems = uploadedFiles.length > 0 ? 
+                    uploadedFiles[currentFileIndex].risks : 
+                    (document.querySelectorAll('.risk-item').length > 0 ? [] : null);
+                highlightRisksInTranscript(riskItems);
+            }
+        });
+        
+        // Load money highlight preference from localStorage
+        const savedMoneyHighlight = localStorage.getItem('moneyHighlightEnabled');
+        if (savedMoneyHighlight !== null) {
+            moneyHighlightEnabled = savedMoneyHighlight === 'true';
+            moneyToggle.checked = moneyHighlightEnabled;
+        }
+        
+        // Save money highlight preference
+        function saveMoneyHighlightPreference() {
+            localStorage.setItem('moneyHighlightEnabled', moneyHighlightEnabled.toString());
+        }
+        
+        // Money detection regex patterns and filtering
+        const moneyPatterns = {
+            // Numeric formats: 200, 2000, 2,000, 20k, 2k, 1m, 2m, 100-1000000
+            numeric: /\b(?:\d{1,3}(?:,\d{3})*(?:\.\d+)?|\d{3,7})(?:\s*(?:k|m|thousand|million))?\b/gi,
+            
+            // Word formats: one hundred, two thousand, twenty thousand, one million, two million
+            word: /\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million)\b(?:\s+(?:and\s+)?(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million))*\b/gi
+        };
+        
+        // Exclusion patterns (must NOT highlight these)
+        const exclusionPatterns = [
+            // Ages: 29 years old, I am 29
+            /\b\d{1,2}\s*(?:years?|yrs?|yo|y\.o\.|year[- ]old)\b/gi,
+            /\b(?:I am|I'm|age|aged)\s+\d{1,2}\b/gi,
+            
+            // Timestamps: [0:00:03 - 0:00:06], 0:01:12
+            /\[\d{1,2}:\d{2}:\d{2}\s*-\s*\d{1,2}:\d{2}:\d{2}\]/gi,
+            /\b\d{1,2}:\d{2}:\d{2}\b/gi,
+            
+            // Dates: 12/12/2025, 12-12-2025
+            /\b\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}\b/gi,
+            
+            // Percentages: 20%
+            /\b\d{1,3}(?:\.\d+)?%\b/gi,
+            
+            // Ordinals: 20th, 1st, 2nd
+            /\b\d{1,}(?:st|nd|rd|th)\b/gi,
+            
+            // Phone numbers: various formats
+            /\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b/gi,
+            /\+\d{1,3}[-.\s]?\d{1,14}\b/gi,
+            
+            // IDs: any alphanumeric ID-like patterns
+            /\b[A-Z0-9]{5,}\b/gi
+        ];
+        
+        // Convert word amounts to numeric values for range checking
+        const wordToNumber = {
+            'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5,
+            'six': 6, 'seven': 7, 'eight': 8, 'nine': 9, 'ten': 10,
+            'eleven': 11, 'twelve': 12, 'thirteen': 13, 'fourteen': 14, 'fifteen': 15,
+            'sixteen': 16, 'seventeen': 17, 'eighteen': 18, 'nineteen': 19,
+            'twenty': 20, 'thirty': 30, 'forty': 40, 'fifty': 50,
+            'sixty': 60, 'seventy': 70, 'eighty': 80, 'ninety': 90,
+            'hundred': 100, 'thousand': 1000, 'million': 1000000
+        };
+        
+        // Check if a string represents a valid money amount
+        function isValidMoneyAmount(text) {
+            const lowerText = text.toLowerCase().trim();
+            
+            // Check exclusions first
+            for (const pattern of exclusionPatterns) {
+                if (pattern.test(lowerText)) {
+                    return false;
+                }
+            }
+            
+            // Parse numeric amounts
+            if (/^\d/.test(text)) {
+                // Remove commas and parse
+                let cleanText = text.replace(/,/g, '');
+                let multiplier = 1;
+                
+                // Check for k/m suffixes
+                if (cleanText.endsWith('k') || cleanText.toLowerCase().endsWith('thousand')) {
+                    multiplier = 1000;
+                    cleanText = cleanText.replace(/[kK]|thousand$/i, '');
+                } else if (cleanText.endsWith('m') || cleanText.toLowerCase().endsWith('million')) {
+                    multiplier = 1000000;
+                    cleanText = cleanText.replace(/[mM]|million$/i, '');
+                }
+                
+                const numValue = parseFloat(cleanText) * multiplier;
+                
+                // Check range: 100 to 1,000,000
+                return !isNaN(numValue) && numValue >= 100 && numValue <= 1000000;
+            }
+            
+            // Parse word amounts
+            if (/^[a-z]/.test(lowerText)) {
+                const words = lowerText.split(/\s+/);
+                let total = 0;
+                let current = 0;
+                
+                for (const word of words) {
+                    if (word === 'and') continue;
+                    
+                    const value = wordToNumber[word];
+                    if (value !== undefined) {
+                        if (value === 100) {
+                            if (current === 0) current = 1;
+                            current *= 100;
+                        } else if (value === 1000) {
+                            total += current * 1000;
+                            current = 0;
+                        } else if (value === 1000000) {
+                            total += current * 1000000;
+                            current = 0;
+                        } else {
+                            current += value;
+                        }
+                    }
+                }
+                
+                total += current;
+                
+                // Check range: 100 to 1,000,000
+                return total >= 100 && total <= 1000000;
+            }
+            
+            return false;
+        }
+        
+        // Find all money amounts in text
+        function findMoneyAmounts(text) {
+            if (!moneyHighlightEnabled) return [];
+            
+            const matches = [];
+            
+            // Check numeric patterns
+            let numericMatch;
+            const numericRegex = moneyPatterns.numeric;
+            while ((numericMatch = numericRegex.exec(text)) !== null) {
+                if (isValidMoneyAmount(numericMatch[0])) {
+                    matches.push({
+                        text: numericMatch[0],
+                        start: numericMatch.index,
+                        end: numericMatch.index + numericMatch[0].length
+                    });
+                }
+            }
+            
+            // Check word patterns
+            let wordMatch;
+            const wordRegex = moneyPatterns.word;
+            while ((wordMatch = wordRegex.exec(text)) !== null) {
+                if (isValidMoneyAmount(wordMatch[0])) {
+                    // Check if this overlaps with any existing match
+                    const overlaps = matches.some(match => 
+                        (wordMatch.index >= match.start && wordMatch.index < match.end) ||
+                        (wordMatch.index + wordMatch[0].length > match.start && wordMatch.index + wordMatch[0].length <= match.end)
+                    );
+                    
+                    if (!overlaps) {
+                        matches.push({
+                            text: wordMatch[0],
+                            start: wordMatch.index,
+                            end: wordMatch.index + wordMatch[0].length
+                        });
+                    }
+                }
+            }
+            
+            // Sort by position
+            matches.sort((a, b) => a.start - b.start);
+            
+            return matches;
+        }
         
         // Initialize file upload with order preservation
         document.getElementById('fileUpload').addEventListener('change', async function(e) {
@@ -1764,7 +2167,6 @@
             resultsContainer.style.display = 'none';
             
             // Case-insensitive regex search
-            //const riskyRegex = new RegExp(riskyPhrases.join("|"), "gi"); previous regex
             const riskyRegex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
             const matches = [...transcript.matchAll(riskyRegex)];
             
@@ -1801,6 +2203,9 @@
         uploadedFiles[currentFileIndex].checkedRisks = [];
         saveCheckedState();
     }
+    
+    // Still highlight money amounts even if no risks
+    highlightRisksInTranscript([]);
     
     btn.classList.remove('analyzing');
     return;
@@ -1912,6 +2317,9 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
             // Show results
             resultsContainer.style.display = 'block';
             btn.classList.remove('analyzing');
+            
+            // Save money highlight preference
+            saveMoneyHighlightPreference();
         }
         
         function checkAllRisksCompleted() {
@@ -2043,48 +2451,123 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
     
     // If we have risks, process them
     if (riskItems && riskItems.length > 0) {
-        //const regex = new RegExp(riskyPhrases.join("|"), "gi"); previous regex
         const regex = new RegExp(riskyPhrases.map(p => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join("|"), "gi");
         let lastIndex = 0;
         const matches = [...text.matchAll(regex)];
         
+        // Find money amounts if enabled
+        const moneyMatches = moneyHighlightEnabled ? findMoneyAmounts(text) : [];
+        
+        // Combine and sort all matches by position
+        const allMatches = [];
+        
         matches.forEach((match, matchIndex) => {
+            allMatches.push({
+                type: 'risk',
+                start: match.index,
+                end: match.index + match[0].length,
+                text: match[0],
+                matchIndex: matchIndex
+            });
+        });
+        
+        moneyMatches.forEach(match => {
+            allMatches.push({
+                type: 'money',
+                start: match.start,
+                end: match.end,
+                text: match.text
+            });
+        });
+        
+        // Sort by position
+        allMatches.sort((a, b) => a.start - b.start);
+        
+        // Remove overlaps (risks take priority over money highlights)
+        const filteredMatches = [];
+        let lastEnd = 0;
+        
+        for (const match of allMatches) {
+            if (match.start >= lastEnd) {
+                filteredMatches.push(match);
+                lastEnd = match.end;
+            } else if (match.type === 'risk') {
+                // Risk takes priority, replace any overlapping money match
+                const overlappingIndex = filteredMatches.findIndex(m => 
+                    m.start < match.end && m.end > match.start
+                );
+                if (overlappingIndex !== -1 && filteredMatches[overlappingIndex].type === 'money') {
+                    filteredMatches[overlappingIndex] = match;
+                    lastEnd = Math.max(lastEnd, match.end);
+                }
+            }
+        }
+        
+        // Build the highlighted text
+        lastIndex = 0;
+        filteredMatches.forEach(match => {
             // Add text before match
-            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.start)));
             
             // Add highlighted match
             const highlight = document.createElement('span');
-            highlight.className = 'highlight';
-            highlight.textContent = match[0];
-            highlight.onclick = () => {
-                // Remove active class from all highlights
-                document.querySelectorAll('.highlight').forEach(el => {
-                    el.classList.remove('active');
-                });
-                // Add active class to clicked highlight
-                highlight.classList.add('active');
-                
-                // Find corresponding risk item and scroll to it
-                const riskItem = document.querySelectorAll('.risk-item')[matchIndex];
-                if (riskItem) {
-                    riskItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    // Flash the risk item
-                    riskItem.style.backgroundColor = 'rgba(0, 173, 181, 0.2)';
-                    setTimeout(() => {
-                        riskItem.style.backgroundColor = '';
-                    }, 2000);
-                }
-            };
+            if (match.type === 'risk') {
+                highlight.className = 'highlight';
+                highlight.onclick = () => {
+                    // Remove active class from all highlights
+                    document.querySelectorAll('.highlight').forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    // Add active class to clicked highlight
+                    highlight.classList.add('active');
+                    
+                    // Find corresponding risk item and scroll to it
+                    const riskItem = document.querySelectorAll('.risk-item')[match.matchIndex];
+                    if (riskItem) {
+                        riskItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        // Flash the risk item
+                        riskItem.style.backgroundColor = 'rgba(0, 173, 181, 0.2)';
+                        setTimeout(() => {
+                            riskItem.style.backgroundColor = '';
+                        }, 2000);
+                    }
+                };
+            } else {
+                highlight.className = 'money-highlight';
+            }
+            highlight.textContent = match.text;
             fragment.appendChild(highlight);
             
-            lastIndex = match.index + match[0].length;
+            lastIndex = match.end;
         });
         
         // Add remaining text
         fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
     } else {
         // Just show the plain text if no risks
-        fragment.appendChild(document.createTextNode(text));
+        // But still highlight money amounts if enabled
+        if (moneyHighlightEnabled) {
+            const moneyMatches = findMoneyAmounts(text);
+            let lastIndex = 0;
+            
+            moneyMatches.forEach(match => {
+                // Add text before match
+                fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.start)));
+                
+                // Add money highlight
+                const highlight = document.createElement('span');
+                highlight.className = 'money-highlight';
+                highlight.textContent = match.text;
+                fragment.appendChild(highlight);
+                
+                lastIndex = match.end;
+            });
+            
+            // Add remaining text
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        } else {
+            fragment.appendChild(document.createTextNode(text));
+        }
     }
     
     // Only update if we have text
@@ -2101,11 +2584,24 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
         highlightContainer.style.border = '1px solid #ddd';
         
         // Only show the helper text if we have risks
-        if (riskItems && riskItems.length > 0) {
+        const hasRisks = riskItems && riskItems.length > 0;
+        const hasMoneyHighlights = moneyHighlightEnabled && findMoneyAmounts(text).length > 0;
+        
+        if (hasRisks || hasMoneyHighlights) {
+            let helperText = '';
+            if (hasRisks) {
+                helperText += '<i class="material-icons" style="vertical-align: middle; color: var(--warning);">highlight</i> Click highlighted phrases to jump to their risk entries';
+            }
+            if (hasRisks && hasMoneyHighlights) {
+                helperText += '<br>';
+            }
+            if (hasMoneyHighlights) {
+                helperText += '<i class="material-icons" style="vertical-align: middle; color: var(--money-highlight);">attach_money</i> Monetary amounts are highlighted';
+            }
+            
             highlightContainer.innerHTML = `
                 <div style="font-size: 14px; color: var(--dark-gray); margin-bottom: 10px;">
-                    <i class="material-icons" style="vertical-align: middle; color: var(--warning);">highlight</i>
-                    Click highlighted phrases to jump to their risk entries
+                    ${helperText}
                 </div>
                 <div style="white-space: pre-wrap;"></div>
             `;
@@ -2553,27 +3049,3 @@ function toggleInputContainer() {
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
