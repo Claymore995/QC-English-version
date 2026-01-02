@@ -1356,6 +1356,95 @@
         margin-right: 10px;
     }
 }
+/* Floating Copy Transcript Button */
+.floating-copy-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 100px; /* Position it under the keyword panel */
+    background-color: var(--primary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 998;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.floating-copy-btn:hover {
+    background-color: #008a91;
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating-copy-btn:active {
+    transform: translateY(0) scale(1);
+}
+
+.floating-copy-btn .material-icons {
+    font-size: 24px;
+}
+
+/* Tooltip for the button */
+.floating-copy-btn::after {
+    content: 'Copy Full Transcript';
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--dark);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.floating-copy-btn:hover::after {
+    opacity: 1;
+}
+
+/* Dark mode support */
+.dark-transcript .floating-copy-btn {
+    background-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-transcript .floating-copy-btn:hover {
+    background-color: #00c4cc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .floating-copy-btn {
+        right: 15px;
+        bottom: 80px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .floating-copy-btn .material-icons {
+        font-size: 22px;
+    }
+    
+    .floating-copy-btn::after {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+}
+
+
+
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -1403,6 +1492,10 @@
     </button>
     <div id="submitMessage" class="submit-message"></div>
 </div>
+<!-- Floating Copy Transcript Button -->
+<button class="floating-copy-btn" id="floatingCopyBtn" title="Copy Full Transcript">
+    <i class="material-icons">content_copy</i>
+</button>
 
 
     <div class="container">
@@ -2325,6 +2418,59 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
             // Save money highlight preference
             saveMoneyHighlightPreference();
         }
+        // Function to copy the full transcript
+function copyFullTranscript() {
+    const transcript = document.getElementById('transcriptInput').value.trim();
+    
+    if (!transcript) {
+        alert('No transcript content to copy');
+        return;
+    }
+    
+    // Create a temporary textarea element
+    const textarea = document.createElement('textarea');
+    textarea.value = transcript;
+    textarea.style.position = 'fixed';
+    textarea.style.top = '-1000px';
+    document.body.appendChild(textarea);
+    
+    // Select and copy
+    textarea.select();
+    textarea.setSelectionRange(0, 99999); // For mobile devices
+    
+    let copied = false;
+    
+    try {
+        copied = document.execCommand('copy');
+    } catch (err) {
+        console.error('Copy failed:', err);
+    }
+    
+    // Remove the temporary element
+    document.body.removeChild(textarea);
+    
+    // Visual feedback
+    const btn = document.getElementById('floatingCopyBtn');
+    if (copied && btn) {
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="material-icons">check</i>';
+        btn.style.backgroundColor = 'var(--success)';
+        
+        // Revert after 2 seconds
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.backgroundColor = '';
+        }, 2000);
+    }
+}
+
+// Add event listener for the floating button
+document.addEventListener('DOMContentLoaded', function() {
+    const floatingCopyBtn = document.getElementById('floatingCopyBtn');
+    if (floatingCopyBtn) {
+        floatingCopyBtn.addEventListener('click', copyFullTranscript);
+    }
+});
         
         function checkAllRisksCompleted() {
             const totalRisks = document.querySelectorAll('.risk-item').length;
