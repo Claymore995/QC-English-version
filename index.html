@@ -2420,32 +2420,34 @@ ${category ? `<span class="risk-category" data-category="${category}">${category
         }
         // Function to copy the full transcript
 function copyFullTranscript() {
-    const transcript = document.getElementById('transcriptInput').value.trim();
+    const div = document.getElementById('highlightContainer');
+    if (!div) return alert('No content to copy');
+
+    const text = div.innerText.trim();
+   
+
+    // Use the modern Clipboard API if available
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text)
+            .then(() => alert('Copied to clipboard!'))
+            .catch(err => console.error('Copy failed:', err));
+    } else {
+        // Fallback for older browsers
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-1000px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand('copy');
     
-    if (!transcript) {
-        alert('No transcript content to copy');
-        return;
+        } catch (err) {
+            console.error('Copy failed:', err);
+        }
+        document.body.removeChild(textarea);
     }
-    
-    // Create a temporary textarea element
-    const textarea = document.createElement('textarea');
-    textarea.value = transcript;
-    textarea.style.position = 'fixed';
-    textarea.style.top = '-1000px';
-    document.body.appendChild(textarea);
-    
-    // Select and copy
-    textarea.select();
-    textarea.setSelectionRange(0, 99999); // For mobile devices
-    
-    let copied = false;
-    
-    try {
-        copied = document.execCommand('copy');
-    } catch (err) {
-        console.error('Copy failed:', err);
-    }
-    
+}
     // Remove the temporary element
     document.body.removeChild(textarea);
     
@@ -3199,5 +3201,6 @@ function toggleInputContainer() {
 </body>
 
 </html>
+
 
 
